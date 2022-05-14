@@ -1,0 +1,110 @@
+<!-- Kory Erdmann -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Correlations</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/corr.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+</head>
+{% include 'header.html' %}
+<body>
+  <div class="main">
+    <h2>Diabetes Correlation Coefficients</h2>
+    <form action="/corr" method="post">
+      <input type="checkbox" value="pct_laccess_pop15" name="mycheckbox">
+      <div class="tooltip">pct_laccess_pop15<span class="tooltiptext">Percentage of people in a county in 2015 living more
+          than 1 mile from a supermarket or large grocery store if in an urban area, or more than 10 miles from a
+          supermarket or large grocery store if in a rural area.</span></div>
+      </option>
+      <br><input type="checkbox" value="pct_laccess_lowi15" name="mycheckbox">
+      <div class="tooltip">pct_laccess_lowi15<span class="tooltiptext">Percentage of people in a county with low income
+          and living more than 1 mile from a supermarket or large grocery store if in an urban area, or more than 10 miles
+          from a supermarket or large grocery store if in a rural area in 2015</span></div>
+      </option>
+      <br><input type="checkbox" value="pct_laccess_hhnv15" name="mycheckbox">
+      <div class="tooltip">pct_laccess_hhnv15<span class="tooltiptext">Percentage of housing units in a county without a
+          car and more than 1 mile from a supermarket or large grocery store in 2015</span></div>
+      </option>
+      <br><input type="checkbox" value="pct_laccess_seniors15" name="mycheckbox">
+      <div class="tooltip">pct_laccess_seniors15<span class="tooltiptext">Percentage of seniors (age > 64) in a county
+          living more than 1 mile from a supermarket or large grocery store if in an urban area, or more than 10 miles
+          from a supermarket or large grocery store if in a rural area in 2015</span></div>
+      </option>
+      <br><input type="checkbox" value="pct_laccess_white15" name="mycheckbox">
+      <div class="tooltip">pct_laccess_white15<span class="tooltiptext">Percentage of people in a county who are White
+          living more than 1 mile from a supermarket or large grocery store if in an urban area, or more than 10 miles
+          from a supermarket or large grocery store if in a rural area.</span></div>
+      </option>
+      <br><input type="checkbox" value="pct_laccess_black15" name="mycheckbox">
+      <div class="tooltip">pct_laccess_black15<span class="tooltiptext">Percentage of people in a county who are Black
+          living more than 1 mile from a supermarket or large grocery store if in an urban area, or more than 10 miles
+          from a supermarket or large grocery store if in a rural area.</span></div>
+      </option>
+      <br><input type="checkbox" value="pct_laccess_hisp15" name="mycheckbox">
+      <div class="tooltip">pct_laccess_hisp15<span class="tooltiptext">Percentage of people in a county who are of
+          Hispanic ethnicity living more than 1 mile from a supermarket or large grocery store if in an urban area, or
+          more than 10 miles from a supermarket or large grocery store if in a rural area.</span></div>
+      </option>
+      <br><input type="checkbox" value="pct_laccess_nhasian15" name="mycheckbox">
+      <div class="tooltip">pct_laccess_nhasian15<span class="tooltiptext">Percentage of people in a county who are Asian
+          living more than 1 mile from a supermarket or large grocery store if in an urban area, or more than 10 miles
+          from a supermarket or large grocery store if in a rural area.</span></div>
+      </option>
+      <br><input type="checkbox" value="pct_laccess_snap15" name="mycheckbox">
+      <div class="tooltip">pct_laccess_snap15<span class="tooltiptext">Percentage of housing units in a county receiving
+          SNAP benefits and more than 1 mile from a supermarket or large grocery store in 2015</span></div>
+      </option>
+      </select>
+
+      <br><input class="executebutton" type="submit" value="Create Chart">
+    </form>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', { 'packages': ['bar'] });
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['Corr', 'Value'],
+          {% for row in data %}
+            ["{{ row[0] }}", {{ row[1] }}],
+          {% endfor %}
+        ]);
+
+      var options = {
+
+        width: 800,
+        legend: { position: 'none' },
+        chart: {
+          title: '',
+          subtitle: ''
+        },
+        axes: {
+          x: {
+            0: { side: 'top', label: 'diabetes2013 Correlation Coefficients' } // Top x-axis.
+          }
+        },
+        bar: { groupWidth: "90%" }
+      };
+
+      var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+      // Convert the Classic options to Material options.
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+      };
+    </script>
+    <br>
+    <div class="chart" id="top_x_div" style="width: 800px; height: 600px;"></div>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+</div>
+</body>
+
+</html>

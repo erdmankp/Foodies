@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['bar']});
+          google.charts.setOnLoadCallback(drawStuff);
+    
+          function drawStuff() {
+            var data = new google.visualization.arrayToDataTable([
+              ['Corr', 'Value'],
+              ["one_mile_grocery", 0.14],
+              ["one_mile_grocery_low_income", 0.26],
+              ["one_mile_grocery_no_car", 0.60],
+              ["one_mile_grocery_senior", 0.21],
+              ["one_mile_grocery_white", 0.02],
+              ["one_mile_grocery_black", 0.40],
+              ["one_mile_grocery_hisp", -0.19],
+              ["one_mile_grocery_asian", -0.42],
+              ['receiving_snap', 0.36]
+            ]);
+    
+            var options = {
+              width: 1600,
+              legend: { position: 'none' },
+              chart: {
+                title: '',
+                subtitle: '' },
+              axes: {
+                x: {
+                  0: { side: 'top', label: 'diabetes2013 Correlation Coefficients'} // Top x-axis.
+                }
+              },
+              bar: { groupWidth: "90%" }
+            };
+    
+            var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+            // Convert the Classic options to Material options.
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+          };
+
+          google.charts.load('current', {'packages':['table']});
+          google.charts.setOnLoadCallback(drawTable);
+    
+          function drawTable() {
+            var data = new google.visualization.arrayToDataTable([
+              ['Relationship', 'Corr'],
+              ["one_mile_grocery", 0.14],
+              ["one_mile_grocery_low_income", 0.26],
+              ["one_mile_grocery_no_car", 0.60],
+              ["one_mile_grocery_senior", 0.21],
+              ["one_mile_grocery_white", 0.02],
+              ["one_mile_grocery_black", 0.40],
+              ["one_mile_grocery_hisp", -0.19],
+              ["one_mile_grocery_asian", -0.42],
+              ['receiving_snap', 0.36]
+            ]);
+    
+            var options = {
+        showRowNumber: false,
+         };
+
+    var table = new google.visualization.Table(document.getElementById('table_div'));
+    table.draw(data, options);
+          }
+        </script>
+      </head>
+  <body>
+    <h2>Query</h2>
+
+    <pre>
+        CREATE VIEW virginia_diabetes_corr_coef AS
+            SELECT 
+                corr(diabetes2013, pct_laccess_pop15) AS one_mile_grocery, 
+                corr(diabetes2013, pct_laccess_lowi15) AS one_mile_grocery_low_income, 
+                corr(diabetes2013, pct_laccess_hhnv15) AS one_mile_grocery_no_car, 
+                corr(diabetes2013, pct_laccess_seniors15) AS one_mile_grocery_senior, 
+                corr(diabetes2013, pct_laccess_white15) AS one_mile_grocery_white, 
+                corr(diabetes2013, pct_laccess_black15) AS one_mile_grocery_black, 
+                corr(diabetes2013, pct_laccess_hisp15) AS one_mile_grocery_hisp, 
+                corr(diabetes2013, pct_laccess_nhasian15) AS one_mile_grocery_asian, 
+                corr(diabetes2013, pct_laccess_snap15) AS receiving_snap
+            FROM virginiacountiesinfo AS v
+            JOIN access_and_proximity_to_grocery_store AS access ON v.fips = access.fips
+            WHERE 
+                diabetes2013 > 0 AND diabetes2013 IS NOT NULL
+                AND pct_laccess_pop15 > 0 AND pct_laccess_pop15 IS NOT NULL
+                AND pct_laccess_lowi15 > 0 AND pct_laccess_lowi15 IS NOT NULL
+                AND pct_laccess_hhnv15 > 0 AND pct_laccess_hhnv15 IS NOT NULL
+                AND pct_laccess_snap15 > 0 AND pct_laccess_snap15 IS NOT NULL
+                AND pct_laccess_seniors15 > 0 AND pct_laccess_seniors15 IS NOT NULL
+                AND pct_laccess_white15 > 0 AND pct_laccess_white15 IS NOT NULL
+                AND pct_laccess_black15 > 0 AND pct_laccess_black15 IS NOT NULL
+                AND pct_laccess_hisp15 > 0 AND pct_laccess_hisp15 IS NOT NULL
+                AND pct_laccess_nhasian15 > 0 AND pct_laccess_nhasian15 IS NOT NULL
+            
+        SELECT * FROM virginia_diabetes_corr_coef
+    </pre>
+    
+<h2>Table</h2>
+<div id="table_div"></div>
+<h2>Chart</h2>
+<div id="top_x_div" style="width: 800px; height: 600px;"></div>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<!-- Austin Steger 3/10/22 WIP -->
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h2>Query</h2>
+
+<pre>
+    SELECT st AS state, grocery_states AS "people"
+    FROM states
+    WHERE st = 'VA'
+        OR st = 'WV'
+        OR st = 'MD'
+        OR st = 'NC'
+        OR st = 'KY'
+        OR st = 'TN'
+        OR st = 'DC'
+    ORDER BY grocery_states DESC
+</pre>
+
+<h2>Table</h2>
+
+<div id="table_div"></div>
+
+<script>
+  google.charts.load('current', {'packages':['table']});
+  google.charts.setOnLoadCallback(drawTable);
+
+  function drawTable() {
+    var data = google.visualization.arrayToDataTable([
+      ["state", "people who live more then one mile from a grocery store"],
+      ["MD", 48976.6530238467],
+      ["NC", 18515.1823539126],
+      ["DC", 16970.7056492735],
+      ["TN", 15381.2014427393],
+      ["VA", 10645.4051532773],
+      ["WV", 5859.19659201066],
+      ["KY",5564.08801238998]
+    ]);
+
+    var options = {
+        showRowNumber: false,
+    };
+
+    var table = new google.visualization.Table(document.getElementById('table_div'));
+    table.draw(data, options);
+  }
+</script>
+
+<h2>Chart</h2>
+<div id="chart_div" style="width: 800px; height: 300px;"></div>
+
+<script>
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+    ["state", "people who live more then one mile from a grocery store"],
+      ["MD", 48976.6530238467],
+      ["NC", 18515.1823539126],
+      ["DC", 16970.7056492735],
+      ["TN", 15381.2014427393],
+      ["VA", 10645.4051532773],
+      ["WV", 5859.19659201066],
+      ["KY",5564.08801238998]
+    ]);
+
+    var options = {
+      chartArea: {width:'70%', height:'90%'},
+    };
+
+    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!-- Eric Anderson Arman Saadat 3/29/2022 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/home.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="static/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon-16x16.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  {% include 'header.html' %}
+  <div class="main">
+    <h1>Foodies Database Queries</h1>
+    <div class="querybox">
+      <div class="querytitle">Grocery Proximity</div>
+      <div class="querydescription">Display the number of people in a county living more than
+        1 mile from a grocery store if in an urban area,
+        or more than 10 miles from a grocery store if in a rural area.
+        This query shows the users' county and the next 19 counties ranked lower than it.</div>
+    </div>
+    <div class="querybox">
+      <div class="querytitle">Snap Average</div>
+      <div class="querydescription">Search for Counties/Cities in Virginia that have greater average SNAP spending than
+        number the of states specified by the slider. State data includes DC and excludes VA!
+      </div>
+    </div>
+    <div class="querybox">
+      <div class="querytitle">Diabetes Correlations</div>
+      <div class="querydescription">Calculate the correlation coefficient of diabetes and the other chosen variable. Correlation coefficient result
+        of -1.0 shows a perfect negative correlation between diabetes and the chosen variable and 1.0 shows a perfect
+        positive correlation.</div>
+    </div>
+    <div class="querybox">
+      <div class="querytitle">USA LI</div>
+      <div class="querydescription">Enter a state and compare the number of low income people who live greater than one mile from a grocery store to
+        the state average in the US.</div>
+    </div>
+  </div>
+</body>
+
+</html>

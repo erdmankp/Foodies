@@ -1,0 +1,39 @@
+<!-- Kory Erdmann -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/loginsignup.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+  <title>Sign Up</title>
+</head>
+<ul class="navcenter">
+  <li><a href="login">Login</a></li>
+  <li><a href="signup">Sign Up</a></li>
+</ul>
+
+<body class="boxcenter">
+  <div class="main">
+    <div class="box">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p id="error">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <h3 class="logsigntitle">Sign Up</h3>
+      <form method="POST" action="/signup">
+        <input type="text" name="user" placeholder="Username" class="loginsignfield">
+        <br>
+        <input type="text" name="password" placeholder="Password" class="loginsignfield">
+        <br>
+        <input class="executebutton" type="submit" value="Sign Up">
+    </div>
+    </form>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+/* Kory Erdmann */
+.loginsignfield {
+  margin: 20px;
+}
+
+.box,
+.loginsignfield {
+  font-size: 20px;
+}
+
+.loginsignfield {
+  width: 150px;
+}
+
+.boxcenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  display: flex;
+  height: 400px;
+  width: 200px;
+  background-color: #2D3047;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  margin-top: 10%;
+  text-align: center;
+  color: white;
+  box-shadow: 2px 3px 3px black;
+}
+
+.logsigntitle {
+  color: #FFDBB5;
+}
+
+.navcenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

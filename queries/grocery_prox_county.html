@@ -1,0 +1,102 @@
+<!-- Eric Anderson 3/9/22 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <h2>Query</h2>
+  <pre>
+SELECT
+  county,
+  gp2015,
+  gp2015_LI
+FROM
+  virginiacountiesinfo AS va
+WHERE
+  va.county = 'Henrico'
+  OR va.county = 'Richmond'
+	OR va.county = 'Harrisonburg' -- Placeholders
+GROUP BY
+  va.county,
+  va.gp2015,
+  va.gp2015_LI
+ORDER BY
+  gp2015 DESC,
+  gp2015_LI DESC
+  </pre>
+
+  <h2>Table</h2>
+  <div id="table_div"></div>
+  <script>
+    google.charts.load('current', { 'packages': ['table'] });
+    google.charts.setOnLoadCallback(drawTable);
+
+    function drawTable() {
+      var data = google.visualization.arrayToDataTable([
+        ["County", "Proximity 2015", "Proximity 2015 (Low Income)"],
+        ["Henrico", 64088.78293, 12083.71072],
+        ["Richmond", 43858.24845, 15999.35067],
+        ["Harrisonburg", 1294.426616, 541.2634971],
+        ["Richmond", 473.1227178, 184.2534436]
+      ]);
+
+      var options = {
+        showRowNumber: false,
+      };
+
+      var table = new google.visualization.Table(document.getElementById('table_div'));
+      table.draw(data, options);
+    }
+  </script>
+
+  <h2>Chart</h2>
+    Number of people in a county in 2015 living more than<br>
+    1 mile from a supermarket or large grocery store if in an urban area,<br>
+    or more than 10 miles from a supermarket or large grocery store if in a rural area.
+  
+    <div id="chart_div" style="width: 800px; height: 300px;"></div>
+  <script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["County", "Proximity 2015", "Proximity 2015 (Low Income)"],
+        ["Henrico", 64088.78293, 12083.71072],
+        ["Richmond", 43858.24845, 15999.35067],
+        ["Harrisonburg", 1294.426616, 541.2634971],
+        ["Richmond", 473.1227178, 184.2534436]
+      ]);
+
+      var options = {
+        chartArea: { width: '70%', height: '90%' },
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+  </script>
+
+</body>
+
+<style>
+  body {
+  margin: 30;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+</style>
+
+</html>

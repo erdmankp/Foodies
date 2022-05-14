@@ -1,0 +1,133 @@
+%%
+%% GENERAL INSTRUCTIONS
+%%
+%% Each team member should contribute to the writing/editing of each section.
+%%
+%% Replace the \section titles with specific phrases related to your project.
+%%
+%% You may rearrange the order as long as you address the main prompts below.
+%%
+
+\documentclass[11pt]{article}
+
+% fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+
+% spacing
+\usepackage[margin=1in]{geometry}
+\setlength{\parskip}{1ex}
+\usepackage{multicol}
+\usepackage{setspace}
+\onehalfspacing
+
+% orphans and widows
+\clubpenalty=10000
+\widowpenalty=10000
+
+%------------------------------------------------------------------------------%
+\begin{document}
+
+%% Insert the name of your project, the name of your team, and the name and email of each student.
+
+\begin{center}
+\bfseries\huge
+Health, Assistance Programs, and Grocery Store Proximity by County in Virginia
+\end{center}
+
+\begin{center}
+\itshape\large
+The Foodies
+\end{center}
+
+\begin{multicols}{4}
+\centering
+
+Eric Anderson \\
+{\footnotesize ande28em@dukes.jmu.edu}
+
+Austin Steger \\
+{\footnotesize stegerac@dukes.jmu.edu}
+
+Arman Saadat \\ 
+{\footnotesize saadatat@dukes.jmu.edu}
+
+Kory Erdmann \\
+{\footnotesize erdmankp@dukes.jmu.edu}
+
+\end{multicols}
+
+%------------------------------------------------------------------------------%
+
+%% Introduce the main idea of your project. What is the exact problem you are going to solve? What is your vision for the solution? How will this benefit potential stakeholders? (e.g., users, data owners, society) Provide background information about the problem domain.
+\section*{Problem and Vision}
+We propose to analyze the connection between Health and Physical Activity, Access and Proximity to Grocery Stores, and Local Government expenditures on Supplemental Nutrition Assistance Programs in the state of Virginia. Knowing that access to grocery stores is generally more limited for those with lower incomes, our group will be able to find potential correlations between overall citizen health and limited access to grocery stores. With data reported by each individual county, this relationship can be further examined to find whether government expenditures on resources such as welfare programs or healthcare have any noticeable effect on citizens' well being.
+
+Analyzing this data is a valuable asset, both to local governments and private corporations. Local governments could utilize this data to determine where to target more investments in healthcare and welfare programs, guiding their financial decisions. Local governments can also assess, based off of other counties, whether further investments may make any difference in citizen health. At the same time, private corporations, such as grocery chains, may find a new area where there is a great demand for their services, allowing them to make smarter decisions on where to expand. Although these are our two primary use cases, more potential investments in the community by governments and corporations also benefits the average citizen, allowing them better access to fresh food and health services.
+
+At a larger scale, data sets such as these have the ability to better the quality of life for those that are disproportionately affected by these issues. If undeniable connections are found between government spending on healthcare and the overall health of the population, governments will be more likely to act to fix these issues with solutions that are known to work.
+
+ 
+%------------------------------------------------------------------------------%
+\section*{Data and Questions}
+
+%% Describe the data sets you will use. Where does the data come from, and who owns it? What is the data primarily about? About how much data is available? Include several example rows/instances to illustrate what the data looks like.
+
+In our project, we will be using three separate data sets. The first is titled "USDA FoodEnvironmentAtlas - Access and Proximity to Grocery Store", published by the Virginia Open Data Portal. This data set includes information such as "Number of people in 2015 more than one mile from a supermarket or a grocery store if in an urban area, or more than ten miles from a supermarket or large grocery store if in a rural area". The data set is divided up for every county in Virginia. This data set contains 42 separate subcategories for which Access and Proximity to grocery store is measured, including race, age, and poverty level.
+
+Our second data set is titled "USDA FoodEnvironmentAtlas - Health and Physical Activity", and is also published on the Virginia Open Data Portal. This data set includes information such as "Adult obesity rate in 2017, as a percent". The data set is divided up for every county in Virginia. This data set contains 11 separate subcategories for which "Health and Physical Activity" is measured, including obesity rates, diabetes rates, and recreation/fitness facilities per 1000 residents.
+
+Our final data set is titled "USDA FoodEnvironmentAtlas - Food Assistance" and is also published on the Virginia Open Data Portal. This data set includes information such as "The average SNAP (Supplemental Nutrition Assistance Program) redemption amount per SNAP-authorized store in a county in 2012". The data set is divided up for every county in Virginia. This data set contains 54 separate subcategories for which "Food Assistance" is measured, including average percentage of residents on SNAP per county, food banks per county, and food distribution on Indian reservations sites per county.
+
+
+Here is an example of the data mentioned in the third example:\\
+\\The average SNAP (Supplemental Nutrition Assistance Program) redemption amount per SNAP-authorized store in a county in 2012:\\
+Bland- \textdollar20,825.154999999995\\
+Page-  \textdollar272,660.64502325584\\
+Smyth- \textdollar277,128.23690721655\\
+Lee-   \textdollar239,448.99721925124\\
+
+
+ 
+
+%% Discuss two or three specific questions about the data that your project will answer. How are these questions interesting? Why are they important questions to answer? What resources already exist that help answer these questions?
+
+The first question our data will answer is "What is the correlation between overall health and physical activity and access to grocery stores in the counties of Virginia?". This question is interesting to any Virginia county resident, so they may see how well they are doing relative to the other counties of Virginia. 
+
+Secondly, our data will provide information about Food Stamp (now referred to as SNAP) funding in Virginia and its correlation with the subjects of the first question. Similarly, this interesting to any Virginia county resident, to see where their county stands relative to the others.  
+
+This information may persuade people to move to a higher scoring county or improve their own county's scores. It also may help identify under-served or struggling communities with regards to these fields. Currently, many real-estate websites include complementary statistics similar to these to improve property value. For example, an area with a higher proximity to grocery stores and a higher health index may be more valuable than an area with a poorer health index and proximity to grocery stores.
+
+
+%------------------------------------------------------------------------------%
+\section*{Users and Specs}
+
+%% Describe the main users of your application. Be specific; for example, what is their profession? How much experience do they have with data? Why would they want to use your project?
+All states besides Virginia will be excluded from the data, so the typical users of the application will be local governments of Virginia and corporations, both of which will use the data to analyze the data to discover good targets for investments. Since local governments and corporations are composed of many people with various skill sets, they would have people who have experience analyzing data.
+
+They would want to use our project because it contains the data in an easier way to access and analyze. Instead of needing to look across numerous websites and searching through numerous files, our project will have it laid out for them on a single site. We will also analyze the data and show connections on the site, which removes some analysis work from the user. Lastly, the website will add functionality that allows the user to interact with the data in ways that aren't possible across the sources. 
+
+%% Discuss the high-level specifications. What functionality will your completed application provide? Explain a few use cases: what the user will do, and what the app will do. Leave out the technical details, such as what programming languages and software tools you'll use.
+
+The completed application will show users significant correlations between attributes like access to healthcare, proximity of grocery stores, and government expenditure. The user could select two or more counties and see a visually appealing comparison of their attributes. Another function would be for the user to select certain attributes and see the highest and lowest ranking Virginia counties in those areas.  
+
+%------------------------------------------------------------------------------%
+\section*{About the Team}
+
+%% Include a short biographical sketch for each team member. Focus on academic and professional experience, not where you were born and what your hobbies are. For example, you might list the most recent/advanced CS courses you have completed, software projects you have worked on the in past, internships or other relevant work experience, and/or unique background abilities and skills that you will bring to the project.
+Eric Anderson: Eric has experience working mostly with backend development, both alone and in groups, but has also worked with Apache Web Server, Node.js, and creating APIs. After taking the web development class, he is able to create basic front end applications to display data as well as creating SQL queries. He has an upcoming internship at Amazon Web Services and is working on familiarization with AWS solutions.
+
+Kory Erdmann: Last semester Kory took Web Development which should be helpful for the project since we are making a web application. The class focused on front-end for the first couple months then went into REST API's, so this should make the group have an easier time adding functionality to the website and implementing the interface design. In addition, the Algorithms and Data Structures class that Kory has taken and the Applied Algorithms class in which he is currently enrolled will allow our group to analyze and improve the performance of the code. 
+
+Austin Steger: Austin took cloud computing last semester which gave him some experience querying databases and visualizing data. He has worked on multiple other semester long group projects in his computer science and statistics classes which gave him useful experience for future group projects. Last summer he worked as a software developer intern at a company called Cvent. This gave him more experience working with a team as well as teaching him new skills like using JavaScript for web applications.
+
+Arman Saadat: In Arman's previous semester at JMU, he worked in a team to engineer a software application using object-oriented programming and various GUI skills. He also has experience programming in languages such as C, X86-64, and Python. He is currently enrolled in Algorithms and Data structures, where he is learning to make highly efficient code, and Interaction Design, where he is learning how to design an aesthetically appeasing and functional product.
+
+
+
+
+
+
+%------------------------------------------------------------------------------%
+\end{document}

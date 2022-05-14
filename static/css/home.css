@@ -1,0 +1,19 @@
+/* Kory Erdmann */
+.querybox {
+  max-width: 800px;
+  margin-bottom: 15px;
+}
+
+.querytitle {
+  background-color: #2D3047;
+  color: #FFDBB5;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.querydescription {
+  background-color: #336699;
+  color: white;
+  padding: 10px;
+}

@@ -1,0 +1,61 @@
+<!-- Kory Erdmann -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>History</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/history.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Year', 'Queries'],
+        {% for row in date_query %}
+          ['{{ row[0] }}', {{ row[1] }}],
+        {% endfor %}
+      ]);
+
+    var options = {
+      title: 'Queries',
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+    chart.draw(data, options);
+    }
+  </script>
+
+</head>
+{% include 'header.html' %}
+
+<body>
+  <div class="main">
+    <h2>History</h2>
+    <div class="chart" id="curve_chart" style="width: 800px; height: 250px"></div>
+    <br><a class="deletebutton" href="/deletequery/-1">Delete All</a>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          {% set message = message.split(' ')%}
+          <div id="historybox">
+            <div class="htitle">{{ message[0] }}</div> <div class="hinfo">{{ message[1] }}</div>
+            <div class="htitle">{{ message[2] }}</div> <div class="hinfo"><a id="typelink" href="/{{ message[3] }}">{{ message[3] }}</a></div>
+            <div class="htitle">{{ message[4] }}</div> <div class="hinfo">{{ message[5] }}</div>
+            <div class="htitle">{{ message[6] }}</div> <div class="hinfo">{{ message[7] }} {{ message[8][:8]}}</div>
+            <div class="htitle">{{ message[9] }}</div> <div class="hinfo">{{ message[10] }}</div>
+            <a class="deletebutton" href="/deletequery/{{ message[1] }}">Delete</a>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    </div>
+  </div>
+</body>
+
+</html>

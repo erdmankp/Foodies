@@ -1,0 +1,69 @@
+<!-- Austin Steger 3/10/22 WIP -->
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h2>Query</h2>
+
+<pre>
+SELECT 'state', grocery_states_LI AS "# low income people > one mile from grocery store"
+FROM states
+WHERE st = sta
+UNION
+SELECT 'USA', AVG(grocery_states_LI)
+FROM states
+</pre>
+
+<h2>Table</h2>
+
+<div id="table_div"></div>
+
+<script>
+  google.charts.load('current', {'packages':['table']});
+  google.charts.setOnLoadCallback(drawTable);
+
+  function drawTable() {
+    var data = google.visualization.arrayToDataTable([
+      ["state", "low income people who live more then one mile from a grocery store"],
+      ["USA", 7301.0970264706],
+      ["VA", 2674.64484809484]
+    ]);
+
+    var options = {
+        showRowNumber: false,
+    };
+
+    var table = new google.visualization.Table(document.getElementById('table_div'));
+    table.draw(data, options);
+  }
+</script>
+
+<h2>Chart</h2>
+<div id="chart_div" style="width: 800px; height: 300px;"></div>
+
+<script>
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ["state", "low income people who live more then one mile from a grocery store"],
+      ["USA", 7301.0970264706],
+      ["VA", 2674.64484809484]
+    ]);
+
+    var options = {
+      chartArea: {width:'70%', height:'90%'},
+    };
+
+    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+</script>
+
+</body>
+</html>

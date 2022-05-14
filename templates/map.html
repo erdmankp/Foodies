@@ -1,0 +1,80 @@
+<!-- Kory Erdmann -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Map</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/map.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+</head>
+{% include 'header.html' %}
+<!---- >
+    https://developers.google.com/chart/interactive/docs/gallery/geochart#full
+    <!---->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.charts.load('current', { 'packages': ['geochart'] });
+  google.charts.setOnLoadCallback(drawRegionsMap);
+
+  function drawRegionsMap() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['State', 'Select'],
+      {% for row in data %}
+        ["US-{{ row[0] }}", {{ row[1] }}],
+      {% endfor %}
+    ]);
+
+  var options = {
+
+    region: 'US',
+    displayMode: 'regions',
+    resolution: 'provinces',
+  };
+
+  var chart = new google.visualization.GeoChart(document.getElementById('geochart'));
+
+  chart.draw(data, options);
+      }
+</script>
+</head>
+
+<body>
+  <div class="main">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <h1>{{ messages[0] }}</h1>
+        <p>{{ messages[1] }}</p>
+      {% endif %}
+    {% endwith %}
+    <div class="chart" id="geochart" style="width: 900px; height: 500px;"></div>
+    <form action="/map" method="post">
+      <input type="radio" id="html" name="type" value="diabetes">
+      <label for="diabetes">
+        <div class="maptooltip">Diabetes<span class="maptooltiptext">Percentage of adults with diabetes in a state in
+            2013.</span></div>
+      </label><br>
+      <input type="radio" id="css" name="type" value="obesity">
+      <label for="obesity">
+        <div class="maptooltip">Obesity<span class="maptooltiptext">Percentage of adults with obesity in a state in
+            2013.</span></div>
+      </label><br>
+      <input type="radio" id="css" name="type" value="grocery">
+      <label for="grocery">
+        <div class="maptooltip">Grocery<span class="maptooltiptext">Percentage of housing units in a state without a car
+            and more than 1 mile from a supermarket or large grocery store in 2015.</span></div>
+      </label><br>
+      <input type="radio" id="css" name="type" value="snap">
+      <label for="snap">
+        <div class="maptooltip">Snap<span class="maptooltiptext">Percentage of housing units in a state receiving SNAP
+            benefits and more than 1 mile from a supermarket or large grocery store in 2015.</span></div>
+      </label><br>
+      <input class="executebutton" type="submit" value="Create Graph">
+    </form>
+  </div>
+</body>
+
+</html>

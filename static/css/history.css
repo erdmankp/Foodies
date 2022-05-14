@@ -1,0 +1,35 @@
+/* Kory Erdmann */
+.deletebutton {
+  background-color: #C54E57;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 5px;
+}
+
+.deletebutton:hover {
+  background-color: #960018;
+}
+
+.htitle {
+  color: #FFDBB5;
+  font-weight: bold;
+  background-color: #2D3047;
+  padding: 5px;
+}
+.hinfo{
+  background-color: #336699;
+  color: white;
+  padding: 5px;
+}
+
+#typelink {
+  color: white;
+}
+
+#historybox {
+  color: black;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  max-width: 700px;
+  word-wrap: break-word;
+}

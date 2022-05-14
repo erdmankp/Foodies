@@ -1,0 +1,318 @@
+<!-- Arman Saadat 3/10/22 WIP -->
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+
+<h2>Query</h2>
+
+<pre>
+    SELECT DISTINCT va.county, va.snap2017,  count(s.st)
+    FROM virginiacountiesinfo AS va
+        JOIN states as s ON va.st != s.st 
+    WHERE va.snap2017 < s.snapstates	
+    GROUP BY va.county, va.snap2017
+    ORDER BY count , va.snap2017
+</pre>
+
+<h2>Table</h2>
+
+<div id="table_div"></div>
+
+<script>
+  google.charts.load('current', {'packages':['table']});
+  google.charts.setOnLoadCallback(drawTable);
+
+  function drawTable() {
+    var data = google.visualization.arrayToDataTable([
+
+[ "county",	"snap2017",	"count"],
+["Tazewell"	,357219.5835,	1],
+["Franklin"	,389365.9573,	1],
+["Norton"	,391585.2714,	1],
+["Galax"	,393285.1678,	1],
+["Martinsville",	454443.5734	,1],
+["Powhatan"	,288835.0814	,6],
+["Portsmouth",	273299.4698	,7],
+["Greene"	,277805.901	,7],
+["Radford"	,280319.6574,	7],
+["Essex"	,282684.616	,7],
+["Danville"	,283700.5204	,7],
+["Appomattox",	253185.1706	,9],
+["Greensville",	253278.7227	,9],
+["Suffolk"	,253703.5923	,9],
+["Prince Edward",	261465.1165,	9],
+["Norfolk"	,262339.4709	,9],
+["Lunenburg",	265716.1018	,9],
+["Chesterfield",	251227.1836	,10],
+["Bristol"	,235852.1305	,11],
+["Winchester",	238630.2499	,11],
+["Newport News",	240790.8796	,11],
+["Hampton"	,244744.2215	,11],
+["Buchanan"	,230270.4248	,12],
+["Covington",	230583.6972	,12],
+["Waynesboro",	234247.278	,12],
+["Lynchburg",	229267.7435	,13],
+["Prince William",	222705.3781,	14],
+["Roanoke"	,217144.5136	,15],
+["Manassas"	,217503.8866	,15],
+["Chesapeake",	214883.0529	,16],
+["Fredericksburg",	215058.1717,	16],
+["Petersburg",	215278.5891	,16],
+["Hopewell"	,210796.1445	,20],
+["Washington",	210498.497	,21],
+["Louisa",	206863.173	,22],
+["Culpeper",	200906.9528	,25],
+["Henrico",	205079.3144	,25],
+["Lee"	,197008.0054	,28],
+["Hanover"	,198407.2001,	28],
+["Wise"	,194992.4263	,29],
+["Alexandria",	195722.4839	,29],
+["Warren",	186701.6359	,30],
+["Richmond",	187032.0188,	30],
+["Fairfax"	,187065.597	,30],
+["Salem"	,188049.8898	,30],
+["Staunton"	,188105.76	,30],
+["Pulaski"	,189225.6055	,30],
+["Russell"	,192482.441	,30],
+["Halifax"	,193469.382	,30],
+["Frederick",	183662.3138,	33],
+["Gloucester",	179538.8827,	34],
+["Dinwiddie",	179756.2111	,34],
+["Spotsylvania",	181653.1668	,34],
+["Harrisonburg",	182407.1133	,34],
+["Roanoke"	,182600.776	,34],
+["King George",	182716.3185,	34],
+["Virginia Beach",	167554.0162,	35],
+["Page"	,169249.9738	,35],
+["York"	,171687.0449	,35],
+["Stafford"	,172918.2764,	35],
+["Richmond"	,174712.5277,	35],
+["King William",	175075.6602,	35],
+["Lancaster",	164252.8408,	36],
+["Smyth"	,165120.2858,	36],
+["Albemarle",	167181.5647,	36],
+["Northampton",	159312.5352,	39],
+["Nottoway"	,159681.4205,	39],
+["Prince George"	,159719.7747,	39],
+["Franklin"	,155633.9679	,41],
+["Accomack"	,142246.1667	,43],
+["Campbell",	146693.1067	,43],
+["Westmoreland",	146849.2068,	43],
+["Mecklenburg",	146851.9764	,43],
+["Amherst"	,146892.159	,43],
+["Giles"	,147081.2884	,43],
+["Scott"	,148115.7962	,43],
+["Buckingham",	149422.2623	,43],
+["Rockbridge",	140664.7598	,44],
+["Orange"	,132066.8495	,45],
+["James City",	134224.2975	,45],
+["Brunswick",	135843.3297	,45],
+["Wythe"	,136231.6461	,45],
+["Patrick"	,136643.13	,45],
+["Amelia"	,138853.1463,	45],
+["Henry"	,114810.7662,	46],
+["Shenandoah",	115685.9053	,46],
+["Nelson"	,116953.7958	,46],
+["Charlottesville",	118043.4816,	46],
+["Montgomery",	120386.6074	,46],
+["Falls Church",	120893.2419,	46],
+["Dickenson",	121079.738	,46],
+["Loudoun",	121088.9941	,46],
+["Middlesex",	121099.1268,	46],
+["Mathews",	121116.104	,46],
+["Buena Vista",	121319.6187,	46],
+["Isle of Wight",	126983.8358	,46],
+["New Kent"	,127321.5898	,46],
+["Floyd"	,111557.8044	,47],
+["Charlotte",	111822.0528	,47],
+["Fairfax"	,112788.3325	,47],
+["Northumberland",	113786.8071,	47],
+["Alleghany"	,106181.5887,	48],
+["Fauquier"	,107881.1964	,48],
+["Rockingham",	105491.1057	,49],
+["Caroline",	105637.2088	,49],
+["Surry",	24421.29708	,50],
+["Clarke",	36481.97244	,50],
+["Bland",	44020.9225	,50],
+["Cumberland",	55419.782	,50],
+["Poquoson",	59950.51065	,50],
+["Botetourt",	60588.25571	,50],
+["Carroll",	61728.96321	,50],
+["Grayson",	65135.56317	,50],
+["Pittsylvania",	66680.54827,	50],
+["Southampton",	69780.16909,	50],
+["Augusta"	,72637.73791,	50],
+["Sussex"	,73856.0325	,50],
+["Goochland",	74903.86137,	50],
+["Madison"	,76571.758	,50],
+["Fluvanna"	,78315.4043	,50],
+["Craig"	,79890.164	,50],
+["Arlington",	80461.21635,	50],
+["Williamsburg",	83777.40778,	50],
+["Lexington",	99268.2	,50],
+["Bedford"	,101565.434	,50],
+  ]);
+
+    var options = {
+        showRowNumber: false,
+    };
+
+    var table = new google.visualization.Table(document.getElementById('table_div'));
+    table.draw(data, options);
+  }
+</script>
+
+<h2>Chart</h2>
+<div id="chart_div" style="width: 3500px; height: 3000px;"></div>
+
+<script>
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawSeriesChart);
+
+  function drawSeriesChart() {
+    var data = google.visualization.arrayToDataTable([
+    [ "county",	"snap2017",	"count"],
+["Tazewell"	,357219.5835,	1],
+["Franklin"	,389365.9573,	1],
+["Norton"	,391585.2714,	1],
+["Galax"	,393285.1678,	1],
+["Martinsville",	454443.5734	,1],
+["Powhatan"	,288835.0814	,6],
+["Portsmouth",	273299.4698	,7],
+["Greene"	,277805.901	,7],
+["Radford"	,280319.6574,	7],
+["Essex"	,282684.616	,7],
+["Danville"	,283700.5204	,7],
+["Appomattox",	253185.1706	,9],
+["Greensville",	253278.7227	,9],
+["Suffolk"	,253703.5923	,9],
+["Prince Edward",	261465.1165,	9],
+["Norfolk"	,262339.4709	,9],
+["Lunenburg",	265716.1018	,9],
+["Chesterfield",	251227.1836	,10],
+["Bristol"	,235852.1305	,11],
+["Winchester",	238630.2499	,11],
+["Newport News",	240790.8796	,11],
+["Hampton"	,244744.2215	,11],
+["Buchanan"	,230270.4248	,12],
+["Covington",	230583.6972	,12],
+["Waynesboro",	234247.278	,12],
+["Lynchburg",	229267.7435	,13],
+["Prince William",	222705.3781,	14],
+["Roanoke"	,217144.5136	,15],
+["Manassas"	,217503.8866	,15],
+["Chesapeake",	214883.0529	,16],
+["Fredericksburg",	215058.1717,	16],
+["Petersburg",	215278.5891	,16],
+["Hopewell"	,210796.1445	,20],
+["Washington",	210498.497	,21],
+["Louisa",	206863.173	,22],
+["Culpeper",	200906.9528	,25],
+["Henrico",	205079.3144	,25],
+["Lee"	,197008.0054	,28],
+["Hanover"	,198407.2001,	28],
+["Wise"	,194992.4263	,29],
+["Alexandria",	195722.4839	,29],
+["Warren",	186701.6359	,30],
+["Richmond",	187032.0188,	30],
+["Fairfax"	,187065.597	,30],
+["Salem"	,188049.8898	,30],
+["Staunton"	,188105.76	,30],
+["Pulaski"	,189225.6055	,30],
+["Russell"	,192482.441	,30],
+["Halifax"	,193469.382	,30],
+["Frederick",	183662.3138,	33],
+["Gloucester",	179538.8827,	34],
+["Dinwiddie",	179756.2111	,34],
+["Spotsylvania",	181653.1668	,34],
+["Harrisonburg",	182407.1133	,34],
+["Roanoke"	,182600.776	,34],
+["King George",	182716.3185,	34],
+["Virginia Beach",	167554.0162,	35],
+["Page"	,169249.9738	,35],
+["York"	,171687.0449	,35],
+["Stafford"	,172918.2764,	35],
+["Richmond"	,174712.5277,	35],
+["King William",	175075.6602,	35],
+["Lancaster",	164252.8408,	36],
+["Smyth"	,165120.2858,	36],
+["Albemarle",	167181.5647,	36],
+["Northampton",	159312.5352,	39],
+["Nottoway"	,159681.4205,	39],
+["Prince George"	,159719.7747,	39],
+["Franklin"	,155633.9679	,41],
+["Accomack"	,142246.1667	,43],
+["Campbell",	146693.1067	,43],
+["Westmoreland",	146849.2068,	43],
+["Mecklenburg",	146851.9764	,43],
+["Amherst"	,146892.159	,43],
+["Giles"	,147081.2884	,43],
+["Scott"	,148115.7962	,43],
+["Buckingham",	149422.2623	,43],
+["Rockbridge",	140664.7598	,44],
+["Orange"	,132066.8495	,45],
+["James City",	134224.2975	,45],
+["Brunswick",	135843.3297	,45],
+["Wythe"	,136231.6461	,45],
+["Patrick"	,136643.13	,45],
+["Amelia"	,138853.1463,	45],
+["Henry"	,114810.7662,	46],
+["Shenandoah",	115685.9053	,46],
+["Nelson"	,116953.7958	,46],
+["Charlottesville",	118043.4816,	46],
+["Montgomery",	120386.6074	,46],
+["Falls Church",	120893.2419,	46],
+["Dickenson",	121079.738	,46],
+["Loudoun",	121088.9941	,46],
+["Middlesex",	121099.1268,	46],
+["Mathews",	121116.104	,46],
+["Buena Vista",	121319.6187,	46],
+["Isle of Wight",	126983.8358	,46],
+["New Kent"	,127321.5898	,46],
+["Floyd"	,111557.8044	,47],
+["Charlotte",	111822.0528	,47],
+["Fairfax"	,112788.3325	,47],
+["Northumberland",	113786.8071,	47],
+["Alleghany"	,106181.5887,	48],
+["Fauquier"	,107881.1964	,48],
+["Rockingham",	105491.1057	,49],
+["Caroline",	105637.2088	,49],
+["Surry",	24421.29708	,50],
+["Clarke",	36481.97244	,50],
+["Bland",	44020.9225	,50],
+["Cumberland",	55419.782	,50],
+["Poquoson",	59950.51065	,50],
+["Botetourt",	60588.25571	,50],
+["Carroll",	61728.96321	,50],
+["Grayson",	65135.56317	,50],
+["Pittsylvania",	66680.54827,	50],
+["Southampton",	69780.16909,	50],
+["Augusta"	,72637.73791,	50],
+["Sussex"	,73856.0325	,50],
+["Goochland",	74903.86137,	50],
+["Madison"	,76571.758	,50],
+["Fluvanna"	,78315.4043	,50],
+["Craig"	,79890.164	,50],
+["Arlington",	80461.21635,	50],
+["Williamsburg",	83777.40778,	50],
+["Lexington",	99268.2	,50],
+["Bedford"	,101565.434	,50],
+  ]);
+
+    var options = {
+        title: 'snap avg compare',
+        hAxis: {title: 'snap2017'},
+        vAxis: {title: 'count'},
+        bubble: {textStyle: {fontSize: 11}}
+    };
+
+    var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+</script>
+
+</body>
+</html>
