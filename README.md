@@ -1,12 +1,12 @@
-# foodies
+# Foodies
 
 Team 3: The Foodies
 
-## DESCRIPTION
+## Description
 
-TODO
+Foodies is a web application that allows users to query data regarding diabetes rate, grocery proximity, SNAP participation rate, and other related variables with predefined queries allowing user input. This data is then visualized using Google Charts. Additional functionality includes allowing users to create accounts and view their query history. Data was gathered from data.virginia.gov, which was then used to implement a database using PostgreSQL.
 
-## CONTENTS
+## Contents
 
 * [GP1: Written Proposal](proposal)
 * [GP2: Schema Design](schema)
